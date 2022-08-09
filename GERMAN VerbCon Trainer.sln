@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerbCon Trainer", "Main App\GermanVerbsConjugationTrainer\VerbCon Trainer.csproj", "{D8E0FF3B-1D39-4A71-A71E-A14CCEEC92BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerbCon Editor", "Verb Editor\TrainerVerbsEditor\VerbCon Editor.csproj", "{294492B3-E3E9-44D7-89E0-23CE8AA3D3F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8E0FF3B-1D39-4A71-A71E-A14CCEEC92BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8E0FF3B-1D39-4A71-A71E-A14CCEEC92BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8E0FF3B-1D39-4A71-A71E-A14CCEEC92BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8E0FF3B-1D39-4A71-A71E-A14CCEEC92BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{294492B3-E3E9-44D7-89E0-23CE8AA3D3F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{294492B3-E3E9-44D7-89E0-23CE8AA3D3F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{294492B3-E3E9-44D7-89E0-23CE8AA3D3F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{294492B3-E3E9-44D7-89E0-23CE8AA3D3F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E9F21F4-12A5-49CE-AE0A-4EE7E21A514D}
+	EndGlobalSection
+EndGlobal
