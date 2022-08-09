@@ -4,19 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GERMAN_Word_Editor
+namespace GERMAN_Trainer
 {
-    static class Program
+    static class TrainerScript
     {
         /// <summary>
-        /// Główny punkt wejścia dla aplikacji.
+        /// Main entry point for application
         /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DbEditorWindow());
+            //Application.Run(new trainerLoginWindow()); // Disabled login
+            Application.Run(new MainWindow());
         }
     }
 }

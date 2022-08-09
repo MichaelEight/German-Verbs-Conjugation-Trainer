@@ -1,6 +1,6 @@
 ﻿namespace GERMAN_Word_Editor
 {
-    partial class DbEditorWindow
+    partial class editorMainWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DbEditorWindow));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(editorMainWindow));
             this.verbListBox = new System.Windows.Forms.ListBox();
             this.mainVerbBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -374,7 +374,7 @@
             this.border0.Size = new System.Drawing.Size(390, 98);
             this.border0.TabIndex = 26;
             // 
-            // DbEditorWindow
+            // editorMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -411,7 +411,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "DbEditorWindow";
+            this.Name = "editorMainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Database Editor";
             this.Load += new System.EventHandler(this.DbEditor_Load);

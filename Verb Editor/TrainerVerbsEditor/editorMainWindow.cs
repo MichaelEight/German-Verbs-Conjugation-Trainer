@@ -13,9 +13,9 @@ using System.IO;
 
 namespace GERMAN_Word_Editor
 {
-    public partial class DbEditorWindow : Form
+    public partial class editorMainWindow : Form
     {
-        public DbEditorWindow()
+        public editorMainWindow()
         {
             InitializeComponent();
             LoadDatabaseFromFile();
