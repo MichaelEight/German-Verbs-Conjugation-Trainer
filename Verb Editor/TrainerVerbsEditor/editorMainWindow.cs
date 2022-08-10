@@ -11,6 +11,12 @@ using System.IO;
  * It'll be corrected in the future.
  */
 
+
+/**
+* EDITOR VERSION: 1.5
+* Version number last updated on: 2022.08.10, 02:17 CEST
+*/
+
 namespace GERMAN_Word_Editor
 {
     public partial class editorMainWindow : Form
@@ -20,57 +26,53 @@ namespace GERMAN_Word_Editor
             InitializeComponent();
             LoadDatabaseFromFile();
         }
-        private void DbEditor_Load(object sender, EventArgs e)
-        {
-        }
 
+        bool[] isGoodToUpdate = new bool[7]; // Checks if e.g. verbbox doesn't contain ','
+        bool readyToUpdate; // General bool which checks if every isGoodToUpdate is true
+        bool existsInDB; // If verb is in DB
 
-        bool[] isGoodToUpdate = new bool[7]; // checks if e.g. verbbox doesn't contain ','
-        bool genGoodToUpdate; // general bool if every isGoodToUpdate are true
-        bool existsInDB; // if verb is in DB
+        string[] databaseVerbs; // Verbs from database
+        string[] tempVerbInBox = new string[7]; // Temporary verbs in boxes, used for applying changes
 
-        string[] databaseVerbs; // verbs from database
-        string[] tempVerbInBox = new string[7]; // temporary verbs in boxes, used for applying changes
+        string path = Directory.GetCurrentDirectory() + "\\Data\\Database.txt"; // Set path to DB
 
-        string path = Directory.GetCurrentDirectory() + "\\Data\\Database.txt"; // set path to DB
-
-        // Load database from file and put it into list
+        // Load database from file and put it onto list
         private void LoadDatabaseFromFile()
         {
-            // if file doesn't exists...
+            // Ff file doesn't exists...
             if (!File.Exists(path))
             {
-                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\Data"); // create folder on : current dir 
-                File.CreateText(path).Close(); // create empty file Database
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\Data"); // Create folder in the current directory
+                File.CreateText(path).Close(); // Create empty file Database
             }
 
-            databaseVerbs = System.IO.File.ReadAllLines(path); // copy lines into var
+            databaseVerbs = File.ReadAllLines(path); // Copy lines into variable
 
-            ReloadDB(); // load DB into list
+            ReloadDB(); // Load DB onto list
         }
 
-        // load or reload DB into list
+        // load or reload DB onto list
         private void ReloadDB()
         {
             verbListBox.Items.Clear(); // clear the box
 
+            // Current verb, free to modify
+            string curVerb = "";
+            // Number of letter in line
+            int noOfLetter;
+
             for (int i = 0; i < databaseVerbs.Length; i++)
             {
-                // current verb, free to modify
-                string curVerb = "";
-                // number of letter in line
-                int noOfLetter;
+                // /* If you want to load verbs with ',' just remove "//" and change item, which is added
+                noOfLetter = 0; // Reset var, set to first char
+                curVerb = databaseVerbs[i]; // Take the next verb
 
-                // /* if you want to load verbs with ',' just remove "//" and change item, which is added
-                noOfLetter = 0; // reset var, set to 1st char
-                curVerb = databaseVerbs[i]; // take next verb
-
-                while (curVerb[noOfLetter] != ',') // find first ','
+                while (curVerb[noOfLetter] != ',') // Find first ','
                 {
                     noOfLetter++;
                 }
 
-                curVerb = curVerb.Remove(noOfLetter); // remove rest after ','
+                curVerb = curVerb.Remove(noOfLetter); // Remove rest after ','
                 // */
                 verbListBox.Items.Add(curVerb);
             }
@@ -78,35 +80,35 @@ namespace GERMAN_Word_Editor
 
         private void DatabaseToFile()
         {
-            // if file doesn't exist...
+            // If file doesn't exist...
             if (!File.Exists(path))
             {
-                using (var tw = new StreamWriter(path, true))
+                using (var sw = new StreamWriter(path, true))
                 {
-                    tw.WriteLine(""); // ... create empty one
+                    sw.WriteLine(""); // ... create empty one
                 }
             }
 
-            // code to empty content of the DB
+            // Empty content of the DB
             FileStream fileStream = File.Open(path, FileMode.Open);
             fileStream.SetLength(0);
             fileStream.Close(); // This flushes the content, too.
 
-            using (var tw = new StreamWriter(path, true))
+            using (var sw = new StreamWriter(path, true))
             {
-                for (int i = 0; i < databaseVerbs.Length; i++) // fill file with verbs
+                for (int i = 0; i < databaseVerbs.Length; i++) // Fill the file with verbs
                 {
-                    tw.WriteLine(databaseVerbs[i]);
+                    sw.WriteLine(databaseVerbs[i]);
                 }
             }
         }
 
-        // when edit is selected
+        // When 'edit' is selected
         private void editCheck_Click(object sender, EventArgs e)
         {
-            addNewCheck.Checked = false; // deselect add new mode
+            addNewCheck.Checked = false; // Deselect 'add new' mode
 
-            // active boxes to enable editing or disable, when you're disabling edit mode
+            // Activate boxes to enable editing or disable them, when 'edit mode' is deactivated
             if (editCheck.Checked)
             {
                 changeVerbBoxStatus(true);
@@ -119,31 +121,31 @@ namespace GERMAN_Word_Editor
             }
         }
 
-        // when add new is selected
+        // When 'add new' is selected
         private void addNewCheck_Click(object sender, EventArgs e)
         {
-            editCheck.Checked = false; // deselect edit mode
-            verbListBox.ClearSelected(); // unselect, 'cause you're adding new
+            editCheck.Checked = false; // Deselect edit mode
+            verbListBox.ClearSelected(); // Deselect, because you're adding new
 
-            // active & clear verb boxes, 'cause you're adding new ; or disable when you're disabling add new
+            // Activate & clear verb boxes, because you're adding new ; or disable, when deactivating 'add new'
             if (addNewCheck.Checked)
             {
                 changeVerbBoxStatus(true);
-                verbListBox.Enabled = false; // disable selecting on the list 
+                verbListBox.Enabled = false; // Disable selecting on the list 
                 addButton.Enabled = true;
             }
             else
             {
                 changeVerbBoxStatus(false);
-                verbListBox.Enabled = true; // reenable selecting on the list
+                verbListBox.Enabled = true; // Reenable selecting on the list
                 addButton.Enabled = false;
             }
 
-            // make boxes blank
+            // Make boxes blank
             ClearBoxes();
         }
 
-        // func to change state of verb boxes
+        // Change state of verb boxes
         private void changeVerbBoxStatus(bool state)
         {
             if (state)
@@ -168,10 +170,10 @@ namespace GERMAN_Word_Editor
             }
         }
 
-        private void mainVerbBox_TextChanged(object sender, EventArgs e) // check for invalid chars in main verb box
+        private void mainVerbBox_TextChanged(object sender, EventArgs e) // check for invalid characters in main verb box
         {
             checkBoxForInvalid(mainVerbBox.Text, border0, 0);
-            tempVerbInBox[0] = mainVerbBox.Text; // moves verb to temporary var 
+            tempVerbInBox[0] = mainVerbBox.Text; // Moves verb to temporary variable
         }
 
         private void verbBox1_TextChanged(object sender, EventArgs e)
@@ -212,7 +214,7 @@ namespace GERMAN_Word_Editor
 
         private void checkBoxForInvalid(string text, Label border, int noBox)
         {
-            // check if any of this characters occurs
+            // check if any of these characters occurs
             if (text.Contains(',') || text.Contains('.') || text.Contains('!') || text.Contains('?') || text.Contains(';') || text.Contains(':')
                 || text.Contains('0') || text.Contains('1') || text.Contains('2') || text.Contains('3') || text.Contains('4') || text.Contains('5')
                 || text.Contains('6') || text.Contains('7') || text.Contains('8') || text.Contains('9') || text.Contains('#') || text.Contains('@')
@@ -221,23 +223,23 @@ namespace GERMAN_Word_Editor
                 || text.Contains('-') || text.Contains('+') || text.Contains('=') || text.Contains('~') || text.Contains('`') || text.Contains('\'')
                 || text.Contains('\"') || text.Contains('[') || text.Contains(']') || text.Contains('{') || text.Contains('}') || text.Contains('_'))
             {
-                border.BackColor = Color.Red; // border color to red - indicate mistake
-                isGoodToUpdate[noBox] = false; // disable updating DB
+                border.BackColor = Color.Red; // Change border color to red - indicate mistake
+                isGoodToUpdate[noBox] = false; // Disable DB updating
             }
             else
             {
                 border.BackColor = Color.Transparent;
-                isGoodToUpdate[noBox] = true; // enable updating DB
+                isGoodToUpdate[noBox] = true; // Enable DB updating
             }
         }
 
         private void verbListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!addNewCheck.Checked && verbListBox.SelectedIndex >= 0) // if "add new" isn't selected
+            if (!addNewCheck.Checked && verbListBox.SelectedIndex >= 0) // If 'add new' isn't selected
             {
-                string[] selectedVerbs = databaseVerbs[verbListBox.SelectedIndex].Split(','); // load and split line of selected verb
+                string[] selectedVerbs = databaseVerbs[verbListBox.SelectedIndex].Split(','); // Load and split line of selected verb
 
-                // put changed verbs into boxes
+                // Put changed verbs into boxes
                 mainVerbBox.Text = selectedVerbs[0];
                 verbBox1.Text = selectedVerbs[1];
                 verbBox2.Text = selectedVerbs[2];
@@ -261,37 +263,37 @@ namespace GERMAN_Word_Editor
         {
             CheckIfCorrect();
 
-            if (genGoodToUpdate)
+            if (readyToUpdate)
             {
-                string verbsToLine = tempVerbInBox[0]; // add 1st word
-                for (int i = 1; i <= 6; i++) // add the rest
+                string verbsToLine = tempVerbInBox[0]; // Add first word
+                for (int i = 1; i <= 6; i++) // Add the rest
                 {
                     verbsToLine += "," + tempVerbInBox[i];
                 }
 
-                if (addNewCheck.Checked && !existsInDB) // if selected is add new
+                if (addNewCheck.Checked && !existsInDB) // If selected 'add new'
                 {
-                    string[] tempDB = new string[databaseVerbs.Length + 1]; // create temp DB
-                    for (int i = 0; i < databaseVerbs.Length; i++) // move data from DB to tempDB
+                    string[] tempDB = new string[databaseVerbs.Length + 1]; // Create temporary DB
+                    for (int i = 0; i < databaseVerbs.Length; i++) // Move data from DB to tempDB
                     {
                         tempDB[i] = databaseVerbs[i];
                     }
-                    tempDB[tempDB.Length - 1] = verbsToLine; // add new element
+                    tempDB[tempDB.Length - 1] = verbsToLine; // Add new element
                     databaseVerbs = new string[tempDB.Length];
                     databaseVerbs = tempDB;
 
-                    DatabaseToFile(); // insert DB to file
-                    ReloadDB(); // reload DB to have newest verbs
+                    DatabaseToFile(); // Insert DB to file
+                    ReloadDB(); // Reload DB to have newest verbs
 
-                    ClearBoxes(); // clear after successfully adding verb
+                    ClearBoxes(); // Clear after successfully adding verb
                 }
                 else if (addNewCheck.Checked && existsInDB)
                 {
-                    MessageBox.Show("Podany czasownik jest już na liście!", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("That verb already exists on the list!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else if (editCheck.Checked)// if selected is edit
+                else if (editCheck.Checked) // If selected 'edit'
                 {
-                    databaseVerbs[verbListBox.SelectedIndex] = verbsToLine; // modify that verb
+                    databaseVerbs[verbListBox.SelectedIndex] = verbsToLine; // Modify that verb
 
                     DatabaseToFile();
                     ReloadDB();
@@ -329,11 +331,11 @@ namespace GERMAN_Word_Editor
             // check if everything's okey
             if (isGoodToUpdate[0] && isGoodToUpdate[1] && isGoodToUpdate[2] && isGoodToUpdate[3] && isGoodToUpdate[4] && isGoodToUpdate[5] && isGoodToUpdate[6])
             {
-                genGoodToUpdate = true;
+                readyToUpdate = true;
             }
             else
             {
-                genGoodToUpdate = false;
+                readyToUpdate = false;
             }
         }
 

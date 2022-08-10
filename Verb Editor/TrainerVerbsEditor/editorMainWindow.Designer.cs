@@ -414,7 +414,6 @@
             this.Name = "editorMainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Database Editor";
-            this.Load += new System.EventHandler(this.DbEditor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
