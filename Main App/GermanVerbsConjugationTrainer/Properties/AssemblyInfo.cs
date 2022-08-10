@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Ogólne informacje o zestawie są kontrolowane poprzez następujący 
 // zestaw atrybutów. Zmień wartości tych atrybutów, aby zmodyfikować informacje
 // powiązane z zestawem.
-[assembly: AssemblyTitle("Odmiana Czasowników")]
-[assembly: AssemblyDescription("Program do ćwiczenia odmiany przez osoby niemieckich czasowników")]
+[assembly: AssemblyTitle("VerbCon Trainer")]
+[assembly: AssemblyDescription("Used to practice conjugation of german verbs")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("StarLight Team")]
-[assembly: AssemblyProduct("Odmiana Czasowników")]
+[assembly: AssemblyCompany("Michael 'Eight'")]
+[assembly: AssemblyProduct("Verb conjugation")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Możesz określić wszystkie wartości lub użyć domyślnych numerów kompilacji i poprawki
 // przy użyciu symbolu „*”, tak jak pokazano poniżej:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.6.1")]
-[assembly: AssemblyFileVersion("2.6.1")]
+[assembly: AssemblyVersion("2.7")]
+[assembly: AssemblyFileVersion("2.7")]

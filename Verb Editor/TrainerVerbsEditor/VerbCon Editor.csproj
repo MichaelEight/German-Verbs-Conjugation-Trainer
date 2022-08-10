@@ -7,7 +7,7 @@
     <ProjectGuid>{294492B3-E3E9-44D7-89E0-23CE8AA3D3F9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>GERMAN_Word_Editor</RootNamespace>
-    <AssemblyName>Verb Editor</AssemblyName>
+    <AssemblyName>VerbCon Editor</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
